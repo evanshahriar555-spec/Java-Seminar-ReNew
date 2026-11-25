@@ -1,0 +1,10 @@
+target/
+.idea/
+.vscode/
+*.iml
+renew-data*
+*.mv.db
+*.trace.db
+.env
+application-secrets.properties
+api-update.json
