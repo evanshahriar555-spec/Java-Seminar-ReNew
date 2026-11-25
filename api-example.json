@@ -1,0 +1,12 @@
+{
+  "manufacturer": "DEMO",
+  "type": "API test",
+  "display": 14.0,
+  "memory": 4096,
+  "harddisk": 256,
+  "videocontroller": "Integrated",
+  "price": 100,
+  "processorid": 1,
+  "opsystemid": 1,
+  "pieces": 2
+}

@@ -1,0 +1,143 @@
+{
+  "info": {
+    "name": "ReNew API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "adminUser",
+      "value": "admin"
+    },
+    {
+      "key": "adminPassword",
+      "value": ""
+    },
+    {
+      "key": "testId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "GET ",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/notebooks",
+        "auth": {
+          "type": "noauth"
+        }
+      }
+    },
+    {
+      "name": "GET /1",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/notebooks/1",
+        "auth": {
+          "type": "noauth"
+        }
+      }
+    },
+    {
+      "name": "POST ",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/notebooks",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminUser}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"manufacturer\": \"DEMO\",\n  \"type\": \"API test\",\n  \"display\": 14.0,\n  \"memory\": 4096,\n  \"harddisk\": 256,\n  \"videocontroller\": \"Integrated\",\n  \"price\": 100,\n  \"processorid\": 1,\n  \"opsystemid\": 1,\n  \"pieces\": 2\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Created\",()=>pm.response.to.have.status(201));",
+              "if(pm.response.code===201) pm.collectionVariables.set(\"testId\",pm.response.json().id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT /{{testId}}",
+      "request": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/api/notebooks/{{testId}}",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminUser}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"manufacturer\": \"DEMO\",\n  \"type\": \"API test\",\n  \"display\": 14.0,\n  \"memory\": 4096,\n  \"harddisk\": 256,\n  \"videocontroller\": \"Integrated\",\n  \"price\": 100,\n  \"processorid\": 1,\n  \"opsystemid\": 1,\n  \"pieces\": 3\n}"
+        }
+      }
+    },
+    {
+      "name": "DELETE /{{testId}}",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/api/notebooks/{{testId}}",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "{{adminUser}}",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "{{adminPassword}}",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
