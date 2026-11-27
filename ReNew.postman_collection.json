@@ -22,7 +22,7 @@
     }
   ],
   "item": [
-        {
+    {
       "name": "Reject notebook creation without authentication",
       "request": {
         "method": "POST",
@@ -174,7 +174,20 @@
           "mode": "raw",
           "raw": "{\n  \"manufacturer\": \"DEMO\",\n  \"type\": \"API test\",\n  \"display\": 14.0,\n  \"memory\": 4096,\n  \"harddisk\": 256,\n  \"videocontroller\": \"Integrated\",\n  \"price\": 100,\n  \"processorid\": 1,\n  \"opsystemid\": 1,\n  \"pieces\": 3\n}"
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Update notebook returns 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "DELETE /{{testId}}",
@@ -196,7 +209,20 @@
             }
           ]
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Delete notebook returns 204 No Content', function () {",
+              "    pm.response.to.have.status(204);",
+              "});"
+            ]
+          }
+        }
+      ]
     }
   ]
 }
