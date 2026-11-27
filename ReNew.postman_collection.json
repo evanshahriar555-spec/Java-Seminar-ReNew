@@ -23,24 +23,50 @@
   ],
   "item": [
     {
-      "name": "GET ",
+      "name": "List notebooks",
       "request": {
         "method": "GET",
         "url": "{{baseUrl}}/api/notebooks",
         "auth": {
           "type": "noauth"
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('List notebooks returns 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
-      "name": "GET /1",
+      "name": "Get notebook 1",
       "request": {
         "method": "GET",
         "url": "{{baseUrl}}/api/notebooks/1",
         "auth": {
           "type": "noauth"
         }
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Get notebook 1 returns 200 OK', function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "POST ",
