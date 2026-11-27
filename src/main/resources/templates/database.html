@@ -8,7 +8,9 @@
         <h1>Notebook catalogue</h1>
         <p>Notebook, processor and operating system — joined using JPA relationships.</p>
 
-        <form class="d-flex gap-2 mb-4" th:action="@{/database}" method="get">
+        <form class="d-flex flex-column flex-sm-row gap-2 mb-4"
+              th:action="@{/database}"
+              method="get">
             <input class="form-control"
                    name="q"
                    placeholder="Search brand, model, processor or OS"
