@@ -22,6 +22,39 @@
     }
   ],
   "item": [
+        {
+      "name": "Reject notebook creation without authentication",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/notebooks",
+        "auth": {
+          "type": "noauth"
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"manufacturer\": \"DEMO\",\n  \"type\": \"Authorization test\",\n  \"display\": 14.0,\n  \"memory\": 4096,\n  \"harddisk\": 256,\n  \"videocontroller\": \"Integrated\",\n  \"price\": 100,\n  \"processorid\": 1,\n  \"opsystemid\": 1,\n  \"pieces\": 2\n}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Anonymous notebook creation returns 401', function () {",
+              "    pm.response.to.have.status(401);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
     {
       "name": "List notebooks",
       "request": {
